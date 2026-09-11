@@ -1,4 +1,4 @@
-"""Custom types for yasno_outages."""
+"""Custom types for ha_yasno."""
 
 from __future__ import annotations
 

@@ -8,8 +8,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import aiohttp
 import pytest
 
-from custom_components.yasno_outages.api.base import BaseYasnoApi
-from custom_components.yasno_outages.api.models import (
+from custom_components.ha_yasno.api.base import BaseYasnoApi
+from custom_components.ha_yasno.api.models import (
     OutageEvent,
     OutageEventType,
     OutageSlot,

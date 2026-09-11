@@ -6,12 +6,12 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import aiohttp
 import pytest
 
-from custom_components.yasno_outages.api.models import (
+from custom_components.ha_yasno.api.models import (
     OutageEventType,
     OutageSource,
     YasnoApiError,
 )
-from custom_components.yasno_outages.api.probable import ProbableOutagesApi
+from custom_components.ha_yasno.api.probable import ProbableOutagesApi
 
 TEST_REGION_ID = 25
 TEST_PROVIDER_ID = 902

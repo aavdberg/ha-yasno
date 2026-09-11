@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-MANIFEST = "custom_components/yasno_outages/manifest.json"
+MANIFEST = "custom_components/ha_yasno/manifest.json"
 
 
 def main(version: str) -> None:

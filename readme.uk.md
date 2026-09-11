@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-![HA Yasno Outages Logo](./custom_components/yasno_outages/brand/logo.png)
+![HA Yasno Outages Logo](./custom_components/ha_yasno/brand/logo.png)
 
 # ⚡️ Yasno Outages for Home Assistant
 
@@ -127,4 +127,4 @@ MIT © [Денис Довгань][denysdovhan]
 [add-translation]: https://github.com/denysdovhan/ha-yasno-outages/blob/master/contributing.md#how-to-add-translation
 [calendar-card]: https://www.home-assistant.io/dashboards/calendar/
 [install-image]: https://my.home-assistant.io/badges/config_flow_start.svg
-[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=yasno_outages
+[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=ha_yasno

@@ -1,5 +1,5 @@
 {
-  "domain": "yasno_outages",
+  "domain": "ha_yasno",
   "name": "Yasno Outages",
   "codeowners": ["@denysdovhan"],
   "config_flow": true,

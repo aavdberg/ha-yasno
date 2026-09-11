@@ -4,7 +4,7 @@ import datetime
 
 import pytest
 
-from custom_components.yasno_outages.api.models import (
+from custom_components.ha_yasno.api.models import (
     OutageEvent,
     OutageEventType,
     OutageSlot,

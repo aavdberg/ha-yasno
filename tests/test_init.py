@@ -5,9 +5,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.exceptions import ConfigEntryError
 
-from custom_components.yasno_outages import async_setup_entry
-from custom_components.yasno_outages.api import YasnoNotFoundError
-from custom_components.yasno_outages.const import DOMAIN
+from custom_components.ha_yasno import async_setup_entry
+from custom_components.ha_yasno.api import YasnoNotFoundError
+from custom_components.ha_yasno.const import DOMAIN
 
 
 @pytest.fixture
@@ -48,19 +48,19 @@ async def test_setup_fails_with_stale_address_issue(hass, config_entry):
 
     with (
         patch(
-            "custom_components.yasno_outages.YasnoApi",
+            "custom_components.ha_yasno.YasnoApi",
             return_value=bootstrap_api,
         ),
         patch(
-            "custom_components.yasno_outages.async_check_and_create_repair",
+            "custom_components.ha_yasno.async_check_and_create_repair",
             AsyncMock(),
         ),
         patch(
-            "custom_components.yasno_outages.async_create_stale_address_issue",
+            "custom_components.ha_yasno.async_create_stale_address_issue",
             AsyncMock(),
         ) as create_issue,
         patch(
-            "custom_components.yasno_outages.async_delete_stale_address_issue",
+            "custom_components.ha_yasno.async_delete_stale_address_issue",
             AsyncMock(),
         ) as delete_issue,
         pytest.raises(ConfigEntryError),
@@ -87,27 +87,27 @@ async def test_setup_success_deletes_stale_address_issue(hass, config_entry):
 
     with (
         patch(
-            "custom_components.yasno_outages.YasnoApi",
+            "custom_components.ha_yasno.YasnoApi",
             side_effect=[bootstrap_api, entry_api],
         ),
         patch(
-            "custom_components.yasno_outages.YasnoOutagesCoordinator",
+            "custom_components.ha_yasno.YasnoOutagesCoordinator",
             return_value=coordinator,
         ),
         patch(
-            "custom_components.yasno_outages.async_check_and_create_repair",
+            "custom_components.ha_yasno.async_check_and_create_repair",
             AsyncMock(),
         ),
         patch(
-            "custom_components.yasno_outages.async_create_stale_address_issue",
+            "custom_components.ha_yasno.async_create_stale_address_issue",
             AsyncMock(),
         ) as create_issue,
         patch(
-            "custom_components.yasno_outages.async_delete_stale_address_issue",
+            "custom_components.ha_yasno.async_delete_stale_address_issue",
             AsyncMock(),
         ) as delete_issue,
         patch(
-            "custom_components.yasno_outages.async_get_loaded_integration",
+            "custom_components.ha_yasno.async_get_loaded_integration",
             return_value=MagicMock(),
         ),
     ):

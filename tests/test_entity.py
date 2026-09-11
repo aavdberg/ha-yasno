@@ -2,7 +2,7 @@
 
 from unittest.mock import MagicMock
 
-from custom_components.yasno_outages.entity import YasnoOutagesEntity
+from custom_components.ha_yasno.entity import YasnoOutagesEntity
 
 
 class DummyEntity(YasnoOutagesEntity):

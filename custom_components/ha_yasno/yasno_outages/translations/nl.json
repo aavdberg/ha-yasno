@@ -225,7 +225,7 @@
   },
 
   "device": {
-    "yasno_outages": {
+    "ha_yasno": {
       "name": "Yasno {region} {address}"
     }
   },
