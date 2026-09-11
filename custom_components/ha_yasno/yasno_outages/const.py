@@ -2,7 +2,7 @@
 
 from typing import Final
 
-DOMAIN: Final = "yasno_outages"
+DOMAIN: Final = "ha_yasno"
 NAME: Final = "Yasno Outages"
 
 # Configuration option

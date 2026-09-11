@@ -29,7 +29,7 @@ At the end of each plan, give me a list of unresolved questions to answer, if an
 
 ## Project Overview
 
-This repository is a Home Assistant custom integration providing electricity outage schedules for Ukraine using the [Yasno API](https://yasno.ua). Main codebase lives under `custom_components/yasno_outages`.
+This repository is a Home Assistant custom integration providing electricity outage schedules for Ukraine using the [Yasno API](https://yasno.ua). Main codebase lives under `custom_components/ha_yasno`.
 
 ### Code structure
 

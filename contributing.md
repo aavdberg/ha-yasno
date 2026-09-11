@@ -6,7 +6,7 @@ If you plan to contribute back to this repo, please fork & open a PR.
 
 Only native speaker can translate to specific language.
 
-1. Copy `custom_components/yasno_outages/translations/en.json` file and name it with appropriate language code.
+1. Copy `custom_components/ha_yasno/translations/en.json` file and name it with appropriate language code.
 1. Translate only keys in this file, not values.
 1. Open a PR.
 1. Find someone to check and approve your PR.
@@ -27,4 +27,4 @@ Only native speaker can translate to specific language.
    scripts/develop
    ```
 
-Now you you have a working Home Assistant instance with this integration installed. You can test your changes by editing the files in `custom_components/yasno_outages` folder and restarting your Home Assistant instance.
+Now you you have a working Home Assistant instance with this integration installed. You can test your changes by editing the files in `custom_components/ha_yasno` folder and restarting your Home Assistant instance.

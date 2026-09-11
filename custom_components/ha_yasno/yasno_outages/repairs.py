@@ -47,7 +47,7 @@ async def async_check_and_create_repair(
                 "entry_id": entry.entry_id,
                 "entry_title": entry.title or "Yasno Outages",
                 "edit": (
-                    "/config/integrations/integration/yasno_outages"
+                    "/config/integrations/integration/ha_yasno"
                     f"#config_entry={entry.entry_id}"
                 ),
             },

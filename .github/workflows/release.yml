@@ -24,14 +24,14 @@ jobs:
         run: python scripts/bump_version ${{ github.ref_name }}
 
       - name: 📦 Create zip package
-        working-directory: custom_components/yasno_outages
+        working-directory: custom_components/ha_yasno
         run: zip -r yasno-outages.zip .
 
       - name: 📤  Upload zip to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: custom_components/yasno_outages/yasno-outages.zip
+          file: custom_components/ha_yasno/yasno-outages.zip
           asset_name: yasno-outages.zip
           tag: ${{ github.ref }}
           overwrite: true
