@@ -7,9 +7,9 @@ from zoneinfo import ZoneInfo
 import pytest
 from homeassistant.components.calendar import CalendarEntityDescription
 
-from custom_components.yasno_outages.api import OutageEvent, OutageEventType
-from custom_components.yasno_outages.api.models import OutageSource
-from custom_components.yasno_outages.calendar import (
+from custom_components.ha_yasno.api import OutageEvent, OutageEventType
+from custom_components.ha_yasno.api.models import OutageSource
+from custom_components.ha_yasno.calendar import (
     YasnoPlannedOutagesCalendar,
     YasnoProbableOutagesCalendar,
     async_setup_entry,

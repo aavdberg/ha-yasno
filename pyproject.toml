@@ -1,5 +1,5 @@
 [project]
-name = "ha-yasno-outages"
+name = "ha-yasno"
 version = "0.0.0"
 description = "Home Assistant custom component: Yasno Outages"
 readme = "readme.md"

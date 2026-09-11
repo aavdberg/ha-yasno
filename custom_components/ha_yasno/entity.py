@@ -16,7 +16,7 @@ class YasnoOutagesEntity(CoordinatorEntity[YasnoOutagesCoordinator]):
     def device_info(self) -> DeviceInfo:
         """Return device information about this entity."""
         return DeviceInfo(
-            translation_key="yasno_outages",
+            translation_key="ha_yasno",
             translation_placeholders={
                 "region": self.coordinator.region_name,
                 "address": self.coordinator.address_name or str(self.coordinator.group),

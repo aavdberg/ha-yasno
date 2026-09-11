@@ -1,5 +1,5 @@
 {
-  "name": "ha-yasno-outages",
+  "name": "ha-yasno",
   "image": "mcr.microsoft.com/devcontainers/python:3.14",
   "postCreateCommand": "scripts/setup",
   "updateContentCommand": "uv sync --extra cli",

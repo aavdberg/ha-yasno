@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-![HA Yasno Outages Logo](./custom_components/yasno_outages/brand/logo.png)
+![HA Yasno Outages Logo](./custom_components/ha_yasno/brand/logo.png)
 
 # ⚡️ Yasno Outages for Home Assistant
 
@@ -40,7 +40,7 @@ The quickest way to install this integration is via [HACS][hacs-url] by clicking
 
 1. Visit **HACS** → **Integrations** → **...** (in the top right) → **Custom repositories**
 2. Click **Add**
-3. Paste `https://github.com/denysdovhan/ha-yasno-outages` into the **URL** field
+3. Paste `https://github.com/aavdberg/ha-yasno` into the **URL** field
 4. Chose **Integration** as a **Category**
 5. **Yasno Outages** will appear in the list of available integrations. Install it normally.
 
@@ -83,7 +83,7 @@ Examples:
 
 Here's an example of a dashboard using this integration:
 
-![Dashboard example](https://github.com/denysdovhan/ha-yasno-outages/assets/3459374/26c75595-8984-4a9f-893a-e4b6d838b7f2)
+![Dashboard example](https://github.com/aavdberg/ha-yasno/assets/3459374/26c75595-8984-4a9f-893a-e4b6d838b7f2)
 
 ## Development
 
@@ -104,10 +104,10 @@ MIT © [Denys Dovhan][denysdovhan]
 
 <!-- Badges -->
 
-[gh-release-url]: https://github.com/denysdovhan/ha-yasno-outages/releases/latest
-[gh-release-image]: https://img.shields.io/github/v/release/denysdovhan/ha-yasno-outages?style=flat-square
-[gh-downloads-url]: https://github.com/denysdovhan/ha-yasno-outages/releases
-[gh-downloads-image]: https://img.shields.io/github/downloads/denysdovhan/ha-yasno-outages/total?style=flat-square
+[gh-release-url]: https://github.com/aavdberg/ha-yasno/releases/latest
+[gh-release-image]: https://img.shields.io/github/v/release/aavdberg/ha-yasno?style=flat-square
+[gh-downloads-url]: https://github.com/aavdberg/ha-yasno/releases
+[gh-downloads-image]: https://img.shields.io/github/downloads/aavdberg/ha-yasno/total?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
 [hacs-image]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
 [gh-sponsors-url]: https://github.com/sponsors/denysdovhan
@@ -122,9 +122,9 @@ MIT © [Denys Dovhan][denysdovhan]
 [yasno]: https://yasno.com.ua/
 [home-assistant]: https://www.home-assistant.io/
 [denysdovhan]: https://github.com/denysdovhan
-[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
+[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=aavdberg&repository=ha-yasno&category=integration
 [hacs-install-image]: https://my.home-assistant.io/badges/hacs_repository.svg
-[add-translation]: https://github.com/denysdovhan/ha-yasno-outages/blob/master/contributing.md#how-to-add-translation
+[add-translation]: https://github.com/aavdberg/ha-yasno/blob/main/contributing.md#how-to-add-translation
 [calendar-card]: https://www.home-assistant.io/dashboards/calendar/
 [install-image]: https://my.home-assistant.io/badges/config_flow_start.svg
-[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=yasno_outages
+[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=ha_yasno

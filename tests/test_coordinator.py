@@ -7,19 +7,19 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.const import STATE_UNKNOWN
 
-from custom_components.yasno_outages.api import (
+from custom_components.ha_yasno.api import (
     OutageEvent,
     OutageEventType,
     YasnoApiError,
 )
-from custom_components.yasno_outages.api.const import (
+from custom_components.ha_yasno.api.const import (
     API_STATUS_EMERGENCY_SHUTDOWNS,
     API_STATUS_NO_OUTAGES,
     API_STATUS_SCHEDULE_APPLIES,
     API_STATUS_WAITING_FOR_SCHEDULE,
 )
-from custom_components.yasno_outages.api.models import OutageSource
-from custom_components.yasno_outages.const import (
+from custom_components.ha_yasno.api.models import OutageSource
+from custom_components.ha_yasno.const import (
     STATE_NORMAL,
     STATE_OUTAGE,
     STATE_STATUS_EMERGENCY_SHUTDOWNS,
@@ -27,7 +27,7 @@ from custom_components.yasno_outages.const import (
     STATE_STATUS_SCHEDULE_APPLIES,
     STATE_STATUS_WAITING_FOR_SCHEDULE,
 )
-from custom_components.yasno_outages.coordinator import (
+from custom_components.ha_yasno.coordinator import (
     YasnoOutagesCoordinator,
     find_next_outage,
     is_outage_event,
@@ -74,25 +74,25 @@ def coordinator(config_entry, mock_api):
     # Patch frame helper to avoid HA setup requirements
     with (
         patch(
-            "custom_components.yasno_outages.coordinator.async_get_translations"
+            "custom_components.ha_yasno.coordinator.async_get_translations"
         ) as mock_translations,
         patch("homeassistant.helpers.frame.report_usage"),
     ):
         mock_translations.return_value = {
-            "component.yasno_outages.common.planned_electricity_outage": (
+            "component.ha_yasno.common.planned_electricity_outage": (
                 "Planned Outage"
             ),
-            "component.yasno_outages.common.probable_electricity_outage": (
+            "component.ha_yasno.common.probable_electricity_outage": (
                 "Probable Outage"
             ),
-            "component.yasno_outages.common.status_no_outages": "No Outages",
-            "component.yasno_outages.common.status_schedule_applies": (
+            "component.ha_yasno.common.status_no_outages": "No Outages",
+            "component.ha_yasno.common.status_schedule_applies": (
                 "Schedule Applies"
             ),
-            "component.yasno_outages.common.status_waiting_for_schedule": (
+            "component.ha_yasno.common.status_waiting_for_schedule": (
                 "Waiting for Schedule"
             ),
-            "component.yasno_outages.common.status_emergency_shutdowns": (
+            "component.ha_yasno.common.status_emergency_shutdowns": (
                 "Emergency Shutdowns"
             ),
         }
@@ -726,7 +726,7 @@ class TestCoordinatorDataCaching:
 
         # Run update
         with patch(
-            "custom_components.yasno_outages.coordinator.async_get_translations",
+            "custom_components.ha_yasno.coordinator.async_get_translations",
             return_value={},
         ):
             await coordinator._async_update_data()
@@ -755,7 +755,7 @@ class TestCoordinatorDataCaching:
 
         # Run update
         with patch(
-            "custom_components.yasno_outages.coordinator.async_get_translations",
+            "custom_components.ha_yasno.coordinator.async_get_translations",
             return_value={},
         ):
             await coordinator._async_update_data()
@@ -789,7 +789,7 @@ class TestCoordinatorDataCaching:
 
         # Run update
         with patch(
-            "custom_components.yasno_outages.coordinator.async_get_translations",
+            "custom_components.ha_yasno.coordinator.async_get_translations",
             return_value={},
         ):
             await coordinator._async_update_data()
@@ -819,7 +819,7 @@ class TestCoordinatorDataCaching:
 
         # Run update
         with patch(
-            "custom_components.yasno_outages.coordinator.async_get_translations",
+            "custom_components.ha_yasno.coordinator.async_get_translations",
             return_value={},
         ):
             await coordinator._async_update_data()

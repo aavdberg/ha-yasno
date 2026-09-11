@@ -2,7 +2,7 @@
 
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from custom_components.yasno_outages.const import (
+from custom_components.ha_yasno.const import (
     CONF_ADDRESS_NAME,
     CONF_GROUP,
     CONF_HOUSE_ID,
@@ -11,7 +11,7 @@ from custom_components.yasno_outages.const import (
     CONF_STREET_ID,
     DOMAIN,
 )
-from custom_components.yasno_outages.repairs import (
+from custom_components.ha_yasno.repairs import (
     StaleAddressRepairFlow,
     async_create_fix_flow,
     async_create_stale_address_issue,
@@ -37,7 +37,7 @@ async def test_create_stale_address_issue_is_fixable():
     entry = _build_entry()
 
     with patch(
-        "custom_components.yasno_outages.repairs.ir.async_create_issue"
+        "custom_components.ha_yasno.repairs.ir.async_create_issue"
     ) as create_issue:
         await async_create_stale_address_issue(hass, entry)
 

@@ -2,9 +2,9 @@
 
 import datetime
 
-from custom_components.yasno_outages.api import OutageEvent, OutageEventType
-from custom_components.yasno_outages.api.models import OutageSource
-from custom_components.yasno_outages.helpers import merge_consecutive_outages
+from custom_components.ha_yasno.api import OutageEvent, OutageEventType
+from custom_components.ha_yasno.api.models import OutageSource
+from custom_components.ha_yasno.helpers import merge_consecutive_outages
 
 
 class TestMergeConsecutiveOutages:

@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-![HA Yasno Outages Logo](./custom_components/yasno_outages/brand/logo.png)
+![HA Yasno Outages Logo](./custom_components/ha_yasno/brand/logo.png)
 
 # ⚡️ Yasno Outages for Home Assistant
 
@@ -40,7 +40,7 @@
 
 1. Відвідайте **HACS** → **Інтеграції** → **...** (вгорі праворуч) → **Користувацькі репозиторії**
 2. Натисніть **Додати**
-3. Вставте `https://github.com/denysdovhan/ha-yasno-outages` у поле **URL**
+3. Вставте `https://github.com/aavdberg/ha-yasno` у поле **URL**
 4. Виберіть **Інтеграція** як **Категорію**
 5. **Yasno Outages** з'явиться у списку доступних інтеграцій. Встановіть її звичайним способом.
 
@@ -83,7 +83,7 @@
 
 Приклад панелі керування з цією інтеграцією:
 
-![Приклад панелі керування](https://github.com/denysdovhan/ha-yasno-outages/assets/3459374/26c75595-8984-4a9f-893a-e4b6d838b7f2)
+![Приклад панелі керування](https://github.com/aavdberg/ha-yasno/assets/3459374/26c75595-8984-4a9f-893a-e4b6d838b7f2)
 
 ## Розробка
 
@@ -104,10 +104,10 @@ MIT © [Денис Довгань][denysdovhan]
 
 <!-- Badges -->
 
-[gh-release-url]: https://github.com/denysdovhan/ha-yasno-outages/releases/latest
-[gh-release-image]: https://img.shields.io/github/v/release/denysdovhan/ha-yasno-outages?style=flat-square
-[gh-downloads-url]: https://github.com/denysdovhan/ha-yasno-outages/releases
-[gh-downloads-image]: https://img.shields.io/github/downloads/denysdovhan/ha-yasno-outages/total?style=flat-square
+[gh-release-url]: https://github.com/aavdberg/ha-yasno/releases/latest
+[gh-release-image]: https://img.shields.io/github/v/release/aavdberg/ha-yasno?style=flat-square
+[gh-downloads-url]: https://github.com/aavdberg/ha-yasno/releases
+[gh-downloads-image]: https://img.shields.io/github/downloads/aavdberg/ha-yasno/total?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
 [hacs-image]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
 [gh-sponsors-url]: https://github.com/sponsors/denysdovhan
@@ -122,9 +122,9 @@ MIT © [Денис Довгань][denysdovhan]
 [yasno]: https://yasno.com.ua/
 [home-assistant]: https://www.home-assistant.io/
 [denysdovhan]: https://github.com/denysdovhan
-[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
+[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=aavdberg&repository=ha-yasno&category=integration
 [hacs-install-image]: https://my.home-assistant.io/badges/hacs_repository.svg
-[add-translation]: https://github.com/denysdovhan/ha-yasno-outages/blob/master/contributing.md#how-to-add-translation
+[add-translation]: https://github.com/aavdberg/ha-yasno/blob/main/contributing.md#how-to-add-translation
 [calendar-card]: https://www.home-assistant.io/dashboards/calendar/
 [install-image]: https://my.home-assistant.io/badges/config_flow_start.svg
-[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=yasno_outages
+[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=ha_yasno

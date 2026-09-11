@@ -916,7 +916,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ha-yasno-outages"
+name = "ha-yasno"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [

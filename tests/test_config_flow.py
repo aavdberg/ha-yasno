@@ -5,8 +5,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.config_entries import SOURCE_RECONFIGURE
 
-from custom_components.yasno_outages.config_flow import YasnoOutagesConfigFlow
-from custom_components.yasno_outages.const import (
+from custom_components.ha_yasno.config_flow import YasnoOutagesConfigFlow
+from custom_components.ha_yasno.const import (
     CONF_ADDRESS_NAME,
     CONF_FILTER_PROBABLE,
     CONF_GROUP,
