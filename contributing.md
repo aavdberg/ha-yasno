@@ -15,11 +15,11 @@ Only native speaker can translate to specific language.
 
 1. Clone this repo to wherever you want:
    ```sh
-   git clone https://github.com/denysdovhan/ha-yasno-outages.git
+   git clone https://github.com/aavdberg/ha-yasno.git
    ```
 2. Go into the repo folder:
    ```sh
-   cd ha-yasno-outages
+   cd ha-yasno
    ```
 3. Open the project with [VSCode Dev Container](https://code.visualstudio.com/docs/devcontainers/containers)
 4. Start a HA via `Run Home Assistant on port 8123` task or run a following command:
