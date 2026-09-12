@@ -79,16 +79,12 @@ def coordinator(config_entry, mock_api):
         patch("homeassistant.helpers.frame.report_usage"),
     ):
         mock_translations.return_value = {
-            "component.ha_yasno.common.planned_electricity_outage": (
-                "Planned Outage"
-            ),
+            "component.ha_yasno.common.planned_electricity_outage": ("Planned Outage"),
             "component.ha_yasno.common.probable_electricity_outage": (
                 "Probable Outage"
             ),
             "component.ha_yasno.common.status_no_outages": "No Outages",
-            "component.ha_yasno.common.status_schedule_applies": (
-                "Schedule Applies"
-            ),
+            "component.ha_yasno.common.status_schedule_applies": ("Schedule Applies"),
             "component.ha_yasno.common.status_waiting_for_schedule": (
                 "Waiting for Schedule"
             ),
