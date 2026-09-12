@@ -6,13 +6,25 @@ import logging
 from typing import TYPE_CHECKING
 
 from homeassistant.const import Platform
+from homeassistant.exceptions import ConfigEntryError
 from homeassistant.loader import async_get_loaded_integration
 
-from .api import YasnoApi
-from .const import CONF_PROVIDER, CONF_REGION, CONF_SERVICE
+from .api import YasnoApi, YasnoNotFoundError
+from .const import (
+    CONF_GROUP,
+    CONF_HOUSE_ID,
+    CONF_PROVIDER,
+    CONF_REGION,
+    CONF_SERVICE,
+    CONF_STREET_ID,
+)
 from .coordinator import YasnoOutagesCoordinator
 from .data import YasnoOutagesData
-from .repairs import async_check_and_create_repair
+from .repairs import (
+    async_check_and_create_repair,
+    async_create_stale_address_issue,
+    async_delete_stale_address_issue,
+)
 
 if TYPE_CHECKING:
     from homeassistant.config_entries import ConfigEntry
@@ -85,8 +97,50 @@ async def async_setup_entry(
         )
         return False
 
-    api = YasnoApi()
-    coordinator = YasnoOutagesCoordinator(hass, entry, api)
+    # Setup API for resolving region and provider ids
+    bootstrap_api = YasnoApi()
+    await bootstrap_api.fetch_regions()
+
+    region_data = bootstrap_api.get_region_by_name(region)
+    provider_data = bootstrap_api.get_provider_by_name(region, provider)
+    if not region_data or not provider_data:
+        LOGGER.error(
+            "Failed to resolve region/provider ids for entry %s",
+            entry.entry_id,
+        )
+        return False
+
+    # Resolve group for address if group is not provided
+    group = entry.options.get(CONF_GROUP, entry.data.get(CONF_GROUP))
+    street_id = entry.options.get(CONF_STREET_ID, entry.data.get(CONF_STREET_ID))
+    house_id = entry.options.get(CONF_HOUSE_ID, entry.data.get(CONF_HOUSE_ID))
+    if not group and street_id and house_id:
+        try:
+            group = await bootstrap_api.fetch_group_by_address(
+                region_id=region_data["id"],
+                provider_id=provider_data["id"],
+                street_id=street_id,
+                house_id=house_id,
+            )
+        except YasnoNotFoundError as err:
+            await async_create_stale_address_issue(hass, entry)
+            msg = "Address no longer found; reconfigure integration entry"
+            raise ConfigEntryError(msg) from err
+
+    # If group is not resolved, return error
+    if not group:
+        LOGGER.error("Missing group for entry %s", entry.entry_id)
+        return False
+
+    # Create new API instance with resolved group
+    api = YasnoApi(
+        region_id=region_data["id"],
+        provider_id=provider_data["id"],
+        group=group,
+    )
+    await api.fetch_regions()
+
+    coordinator = YasnoOutagesCoordinator(hass, entry, api, group=group)
     entry.runtime_data = YasnoOutagesData(
         api=api,
         coordinator=coordinator,
@@ -98,6 +152,7 @@ async def async_setup_entry(
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
+    await async_delete_stale_address_issue(hass, entry)
     return True
 
 

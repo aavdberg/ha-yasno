@@ -1,22 +1,41 @@
 """Calendar platform for Yasno outages integration."""
 
+from __future__ import annotations
+
 import datetime
 import logging
+from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from homeassistant.components.calendar import CalendarEntity, CalendarEvent
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity import EntityDescription
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.components.calendar import (
+    CalendarEntity,
+    CalendarEntityDescription,
+    CalendarEvent,
+)
 from homeassistant.util import dt as dt_utils
 
-from .api import OutageEvent
 from .api.models import OutageSource
-from .coordinator import YasnoOutagesCoordinator
-from .data import YasnoOutagesConfigEntry
 from .entity import YasnoOutagesEntity
 from .helpers import merge_consecutive_outages
 
+if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
+    from .api import OutageEvent
+    from .coordinator import YasnoOutagesCoordinator
+    from .data import YasnoOutagesConfigEntry
+
 LOGGER = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True, kw_only=True)
+class YasnoCalendarEntityDescription(CalendarEntityDescription):
+    """Calendar entity description compatible with HA 2026.3+."""
+
+    # Older HA versions don't use this field; keeping the default as None makes
+    # it optional while still exposing it for newer versions that expect it.
+    initial_color: str | None = None
 
 
 def to_calendar_event(
@@ -80,10 +99,11 @@ class YasnoPlannedOutagesCalendar(YasnoOutagesEntity, CalendarEntity):
     ) -> None:
         """Initialize the YasnoPlannedOutagesCalendar entity."""
         super().__init__(coordinator)
-        self.entity_description = EntityDescription(
+        self.entity_description = YasnoCalendarEntityDescription(
             key="planned_outages",
             name="Planned Outages",
             translation_key="planned_outages",
+            initial_color="yellow",
         )
         self._attr_unique_id = (
             f"{coordinator.config_entry.entry_id}-"
@@ -158,10 +178,11 @@ class YasnoProbableOutagesCalendar(YasnoOutagesEntity, CalendarEntity):
     ) -> None:
         """Initialize the YasnoProbableOutagesCalendar entity."""
         super().__init__(coordinator)
-        self.entity_description = EntityDescription(
+        self.entity_description = YasnoCalendarEntityDescription(
             key="probable_outages",
             name="Probable Outages",
             translation_key="probable_outages",
+            initial_color="lightgrey",
         )
         self._attr_unique_id = (
             f"{coordinator.config_entry.entry_id}-"

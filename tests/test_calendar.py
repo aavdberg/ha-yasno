@@ -1,0 +1,193 @@
+"""Tests for calendar functionality."""
+
+import datetime
+from unittest.mock import MagicMock
+from zoneinfo import ZoneInfo
+
+import pytest
+from homeassistant.components.calendar import CalendarEntityDescription
+
+from custom_components.ha_yasno.api import OutageEvent, OutageEventType
+from custom_components.ha_yasno.api.models import OutageSource
+from custom_components.ha_yasno.calendar import (
+    YasnoPlannedOutagesCalendar,
+    YasnoProbableOutagesCalendar,
+    async_setup_entry,
+    to_all_day_calendar_event,
+    to_calendar_event,
+)
+
+UTC = ZoneInfo("UTC")
+
+
+@pytest.fixture
+def coordinator():
+    """Create a mock coordinator for testing."""
+    coordinator = MagicMock()
+    coordinator.api = MagicMock()
+    coordinator.config_entry = MagicMock()
+    coordinator.config_entry.entry_id = "test_entry"
+    coordinator.config_entry.data = {
+        "region": "Київ",
+        "provider": "ДТЕК",
+        "group": "3.1",
+    }
+    coordinator.region_name = "Київ"
+    coordinator.provider_name = "ДТЕК"
+    coordinator.group = "3.1"
+    coordinator.event_summary_map = {
+        OutageSource.PLANNED: "Planned Outage",
+        OutageSource.PROBABLE: "Probable Outage",
+    }
+    coordinator.status_event_summary_map = {
+        "no_outages": "No Outages",
+        "schedule_applies": "Schedule Applies",
+        "emergency_shutdowns": "Emergency Shutdowns",
+    }
+    coordinator.status_all_day_events_enabled = False
+
+    # Mock methods to return specific values
+    def get_planned_outage_at_mock(*_args, **_kwargs):
+        return None
+
+    def get_planned_events_between_mock(*_args, **_kwargs):
+        return []
+
+    def get_status_mock(*_args, **_kwargs):
+        return None
+
+    def get_date_mock(*_args, **_kwargs):
+        return None
+
+    coordinator.get_planned_outage_at = get_planned_outage_at_mock
+    coordinator.get_planned_events_between = get_planned_events_between_mock
+    coordinator.get_status_today = get_status_mock
+    coordinator.get_status_tomorrow = get_status_mock
+    coordinator.get_today_date = get_date_mock
+    coordinator.get_tomorrow_date = get_date_mock
+    return coordinator
+
+
+class TestToCalendarEvent:
+    """Test to_calendar_event function."""
+
+    def test_convert_planned_outage_event(self, coordinator):
+        """Test converting planned outage event to calendar event."""
+        event = OutageEvent(
+            start=datetime.datetime(2025, 1, 27, 10, 0, tzinfo=UTC),
+            end=datetime.datetime(2025, 1, 27, 12, 0, tzinfo=UTC),
+            event_type=OutageEventType.DEFINITE,
+            source=OutageSource.PLANNED,
+        )
+
+        calendar_event = to_calendar_event(coordinator, event)
+
+        assert calendar_event.summary == "Planned Outage"
+        assert calendar_event.start == event.start
+        assert calendar_event.end == event.end
+        assert calendar_event.description == "Definite"
+        assert calendar_event.uid == f"planned-{event.start.isoformat()}"
+
+    def test_convert_probable_outage_event(self, coordinator):
+        """Test converting probable outage event to calendar event."""
+        event = OutageEvent(
+            start=datetime.datetime(2025, 1, 27, 10, 0, tzinfo=UTC),
+            end=datetime.datetime(2025, 1, 27, 12, 0, tzinfo=UTC),
+            event_type=OutageEventType.DEFINITE,
+            source=OutageSource.PROBABLE,
+        )
+
+        calendar_event = to_calendar_event(coordinator, event)
+
+        assert calendar_event.summary == "Probable Outage"
+        assert calendar_event.start == event.start
+        assert calendar_event.end == event.end
+        assert calendar_event.description == "Definite"
+        assert calendar_event.uid == f"probable-{event.start.isoformat()}"
+
+    def test_event_without_source_defaults_to_planned(self, coordinator):
+        """Test event without source defaults to planned."""
+        event = OutageEvent(
+            start=datetime.datetime(2025, 1, 27, 10, 0, tzinfo=UTC),
+            end=datetime.datetime(2025, 1, 27, 12, 0, tzinfo=UTC),
+            event_type=OutageEventType.DEFINITE,
+            source=None,
+        )
+
+        calendar_event = to_calendar_event(coordinator, event)
+
+        assert calendar_event.summary == "Planned Outage"
+        assert calendar_event.uid.startswith("planned-")
+
+
+class TestToAllDayCalendarEvent:
+    """Test to_all_day_calendar_event function."""
+
+    def test_convert_status_to_all_day_event(self, coordinator):
+        """Test converting status to all-day calendar event."""
+        date = datetime.date(2025, 1, 27)
+        status = "no_outages"
+
+        calendar_event = to_all_day_calendar_event(coordinator, date, status)
+
+        assert calendar_event.summary == "No Outages"
+        assert calendar_event.start == date
+        assert calendar_event.end == date + datetime.timedelta(days=1)
+        assert calendar_event.description == status
+        assert calendar_event.uid == f"status-{date.isoformat()}"
+
+    def test_unknown_status_uses_status_text(self, coordinator):
+        """Test unknown status uses status text as summary."""
+        date = datetime.date(2025, 1, 27)
+        status = "UnknownStatus"
+
+        calendar_event = to_all_day_calendar_event(coordinator, date, status)
+
+        assert calendar_event.summary == "UnknownStatus"
+        assert calendar_event.description == "UnknownStatus"
+
+
+class TestYasnoCalendarEntities:
+    """Test calendar entity descriptions."""
+
+    def test_planned_calendar_uses_calendar_entity_description(self, coordinator):
+        """Test planned calendar uses calendar-specific entity description."""
+        calendar = YasnoPlannedOutagesCalendar(coordinator)
+
+        assert isinstance(calendar.entity_description, CalendarEntityDescription)
+        assert calendar.entity_description.key == "planned_outages"
+        assert calendar.entity_description.name == "Planned Outages"
+        assert calendar.entity_description.translation_key == "planned_outages"
+        assert calendar.entity_description.initial_color == "yellow"
+
+    def test_probable_calendar_uses_calendar_entity_description(self, coordinator):
+        """Test probable calendar uses calendar-specific entity description."""
+        calendar = YasnoProbableOutagesCalendar(coordinator)
+
+        assert isinstance(calendar.entity_description, CalendarEntityDescription)
+        assert calendar.entity_description.key == "probable_outages"
+        assert calendar.entity_description.name == "Probable Outages"
+        assert calendar.entity_description.translation_key == "probable_outages"
+        assert calendar.entity_description.initial_color == "lightgrey"
+
+
+class TestCalendarSetup:
+    """Test calendar setup functionality."""
+
+    async def test_async_setup_entry(self, coordinator):
+        """Test async_setup_entry creates calendar entity."""
+        config_entry = MagicMock()
+        config_entry.runtime_data = MagicMock()
+        config_entry.runtime_data.coordinator = coordinator
+
+        hass = MagicMock()
+        async_add_entities = MagicMock()
+
+        await async_setup_entry(hass, config_entry, async_add_entities)
+
+        assert async_add_entities.call_count == 1
+        entities = async_add_entities.call_args[0][0]
+
+        assert len(entities) == 2
+        assert isinstance(entities[0], YasnoPlannedOutagesCalendar)
+        assert entities[0].coordinator == coordinator

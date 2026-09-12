@@ -19,8 +19,7 @@ class YasnoOutagesEntity(CoordinatorEntity[YasnoOutagesCoordinator]):
             translation_key="ha_yasno",
             translation_placeholders={
                 "region": self.coordinator.region_name,
-                "provider": self.coordinator.provider_name,
-                "group": str(self.coordinator.group),
+                "address": self.coordinator.address_name or str(self.coordinator.group),
             },
             identifiers={(DOMAIN, self.coordinator.config_entry.entry_id)},
             manufacturer="Yasno",

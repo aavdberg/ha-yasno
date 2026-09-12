@@ -3,64 +3,230 @@
   "config": {
     "step": {
       "user": {
+        "title": "Yasno Outages: Login Mode",
+        "description": "Choose how to set up the integration.",
+        "data": {
+          "login_mode": "Login mode:"
+        },
+        "data_description": {
+          "login_mode": "Choose 'Public' to select region/provider/group manually, or 'Account' to log in with your Yasno account (phone number) and auto-detect these from your linked address."
+        }
+      },
+      "reconfigure": {
+        "title": "Yasno Outages: Reconfigure",
+        "description": "Choose the region that matches your current address.",
+        "data": {
+          "region": "Please select your region:"
+        }
+      },
+      "region": {
         "title": "Yasno Outages Settings",
         "data": {
           "region": "Please select your region:"
         }
       },
       "provider": {
-        "title": "Yasno Outages Settings",
+        "title": "Yasno Outages: Provider",
+        "description": "Pick the distribution system operator for your region.",
         "data": {
           "provider": "Please select your provider:"
+        },
+        "data_description": {
+          "provider": "Select the distribution system operator"
         }
       },
-      "group": {
-        "title": "Yasno Outages Settings",
+      "method": {
+        "title": "Yasno Outages: Setup Method",
+        "description": "Choose between group-based or address-based setup:",
+        "menu_options": {
+          "address": "By address",
+          "group": "By group"
+        }
+      },
+      "street_query": {
+        "title": "Yasno Outages: Street Search",
+        "description": "Type part of your street name to narrow the search.",
         "data": {
-          "group": "Please select your group:",
+          "street_query": "Enter part of your street name:"
+        },
+        "data_description": {
+          "street_query": "Used to search your street in the selected region and provider"
+        }
+      },
+      "street": {
+        "title": "Yasno Outages: Street Selection",
+        "description": "Select the correct street from the search results.",
+        "data": {
+          "street": "Select your street:"
+        },
+        "data_description": {
+          "street": "Pick a street from the search results"
+        }
+      },
+      "house_query": {
+        "title": "Yasno Outages: House Search",
+        "description": "Enter a house number or part of it to find your address.",
+        "data": {
+          "house_query": "Enter your house number:"
+        },
+        "data_description": {
+          "house_query": "Used to search houses for the selected street"
+        }
+      },
+      "house": {
+        "title": "Yasno Outages: House Selection",
+        "description": "Pick the exact house number for your street.",
+        "data": {
+          "house": "Select your house:"
+        },
+        "data_description": {
+          "house": "Pick a house number for the selected street"
+        }
+      },
+      "preferences": {
+        "title": "Yasno Outages: Preferences",
+        "description": "Fine-tune integration behavior for your needs.",
+        "data": {
+          "scan_interval": "Update interval",
           "filter_probable": "Hide probable outages for planned days",
           "status_all_day_events": "Show status all-day events"
         },
         "data_description": {
-          "group": "You can find your group at: https://static.yasno.ua/kyiv/outages",
+          "scan_interval": "The number of minutes between updates",
           "filter_probable": "Hides probable outages in the calendar for days when a planned schedule is available",
           "status_all_day_events": "Adds all-day calendar entries describing today's and tomorrow's outage status"
         }
+      },
+      "group": {
+        "title": "Yasno Outages: Group Selection",
+        "description": "Choose the outage group assigned to your address.",
+        "data": {
+          "group": "Please select your group:"
+        },
+        "data_description": {
+          "group": "You can find your group at: {yasno_group_url}"
+        }
+      },
+      "phone": {
+        "title": "Log in to your Yasno account",
+        "data": {
+          "phone_number": "Phone number",
+          "message_type": "Send code via"
+        },
+        "data_description": {
+          "phone_number": "Format: +380XXXXXXXXX",
+          "message_type": "Choose how you want to receive the one-time login code"
+        }
+      },
+      "otp": {
+        "title": "Enter the login code",
+        "data": {
+          "otp_code": "Verification code"
+        },
+        "data_description": {
+          "otp_code": "The code that was sent to your phone via SMS or Viber"
+        }
+      },
+      "account": {
+        "title": "Select your Yasno account",
+        "data": {
+          "account_id": "Account"
+        }
       }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Yasno API.",
+      "street_query_required": "Street search query is required.",
+      "house_query_required": "House search query is required.",
+      "no_streets": "No streets found for this query.",
+      "no_houses": "No houses found for this street.",
+      "no_group": "Failed to resolve group for this address.",
+      "login_failed": "Could not start the login. Check the phone number and try again.",
+      "login_blocked": "Yasno temporarily blocked this request. Please wait a while and try again, or try from a different network.",
+      "invalid_code": "The verification code is invalid or expired.",
+      "no_accounts": "No Yasno account was found for this phone number.",
+      "no_address": "No address is linked to this Yasno account."
     }
   },
   "options": {
     "step": {
       "init": {
-        "title": "Yasno Outages Settings",
+        "title": "Yasno Outages: Preferences",
+        "description": "Fine-tune integration behavior for your needs.",
         "data": {
-          "region": "Please select your region:"
-        }
-      },
-      "provider": {
-        "title": "Yasno Outages Settings",
-        "data": {
-          "provider": "Please select your provider:"
-        }
-      },
-      "group": {
-        "title": "Yasno Outages Settings",
-        "data": {
-          "group": "Please select your group:",
+          "scan_interval": "Update interval",
           "filter_probable": "Hide probable outages when planned schedule is available",
           "status_all_day_events": "Show status all-day events"
         },
         "data_description": {
-          "group": "You can find your group at: https://static.yasno.ua/kyiv/outages",
+          "scan_interval": "The number of minutes between updates",
+          "filter_probable": "Hides probable outages when planned schedule exists for a day",
           "status_all_day_events": "Adds all-day calendar entries describing today's and tomorrow's status"
         }
+      },
+      "phone": {
+        "title": "Log in to your Yasno account",
+        "data": {
+          "phone_number": "Phone number",
+          "message_type": "Send code via"
+        },
+        "data_description": {
+          "phone_number": "Format: +380XXXXXXXXX",
+          "message_type": "Choose how you want to receive the one-time login code"
+        }
+      },
+      "otp": {
+        "title": "Enter the login code",
+        "data": {
+          "otp_code": "Verification code"
+        },
+        "data_description": {
+          "otp_code": "The code that was sent to your phone via SMS or Viber"
+        }
+      },
+      "account": {
+        "title": "Select your Yasno account",
+        "data": {
+          "account_id": "Account"
+        }
+      },
+      "account_settings": {
+        "title": "Yasno Outages Settings",
+        "data": {
+          "filter_probable": "Hide probable outages when planned schedule is available",
+          "status_all_day_events": "Show status all-day events"
+        },
+        "data_description": {
+          "status_all_day_events": "Adds all-day calendar entries describing today's and tomorrow's status"
+        }
+      }
+    },
+    "error": {
+      "login_failed": "Could not start the login. Check the phone number and try again.",
+      "login_blocked": "Yasno temporarily blocked this request. Please wait a while and try again, or try from a different network.",
+      "invalid_code": "The verification code is invalid or expired.",
+      "no_accounts": "No Yasno account was found for this phone number.",
+      "no_address": "No address is linked to this Yasno account."
+    }
+  },
+  "selector": {
+    "login_mode": {
+      "options": {
+        "public": "Public (manual region/provider/group)",
+        "account": "Yasno account login"
+      }
+    },
+    "message_type": {
+      "options": {
+        "sms": "SMS",
+        "viber": "Viber"
       }
     }
   },
 
   "device": {
     "ha_yasno": {
-      "name": "Yasno {region} {provider} {group}"
+      "name": "Yasno {region} {address}"
     }
   },
   "entity": {
@@ -95,6 +261,7 @@
       "status_today": {
         "name": "Status Today",
         "state": {
+          "no_outages": "No Outages",
           "schedule_applies": "Schedule Applies",
           "waiting_for_schedule": "Waiting for Schedule",
           "emergency_shutdowns": "Emergency Shutdowns"
@@ -103,24 +270,100 @@
       "status_tomorrow": {
         "name": "Status Tomorrow",
         "state": {
+          "no_outages": "No Outages",
           "schedule_applies": "Schedule Applies",
           "waiting_for_schedule": "Waiting for Schedule",
           "emergency_shutdowns": "Emergency Shutdowns"
         }
+      },
+      "account_balance": {
+        "name": "Account Balance"
+      },
+      "account_address": {
+        "name": "Account Address"
+      },
+      "account_last_meter_reading_day": {
+        "name": "Last Meter Reading (Day)"
+      },
+      "account_last_meter_reading_night": {
+        "name": "Last Meter Reading (Night)"
+      },
+      "account_last_meter_reading_on": {
+        "name": "Last Meter Reading Submitted On"
+      },
+      "tariff_name": {
+        "name": "Tariff Plan"
+      },
+      "tariff_price_day": {
+        "name": "Tariff Price (Day)"
+      },
+      "tariff_price_night": {
+        "name": "Tariff Price (Night)"
+      },
+      "tariff_distribution_price": {
+        "name": "Tariff Distribution Price"
+      },
+      "tariff_transfer_price": {
+        "name": "Tariff Transfer Price"
       }
     }
   },
   "common": {
     "planned_electricity_outage": "Outage",
     "probable_electricity_outage": "Probable Outage",
+    "status_no_outages": "No Outages",
     "status_schedule_applies": "Schedule Applies",
     "status_waiting_for_schedule": "Waiting for Schedule",
-    "status_emergency_shutdowns": "Emergency Shutdowns"
+    "status_emergency_shutdowns": "Emergency Shutdowns",
+    "tariff_plan_with_electric_heating": "With Electric Heating"
   },
   "issues": {
     "missing_config": {
       "title": "{entry_title}: Configuration incomplete",
       "description": "This integration entry is missing required settings (region and/or provider).\n\nTo fix this error, [edit the integration entry]({edit}) and update your settings with the correct region and provider."
+    },
+    "stale_address_ids": {
+      "title": "{entry_title}: Reconfigure address (Yasno changed IDs)",
+      "fix_flow": {
+        "step": {
+          "street_query": {
+            "title": "Yasno Outages: Street Search",
+            "description": "Yasno changed street/house identifiers. Search and select your current address to repair this entry.\n\nSaved address: {current_address}.",
+            "data": {
+              "street_query": "Enter part of your street name:"
+            }
+          },
+          "street": {
+            "title": "Yasno Outages: Street Selection",
+            "description": "Select the correct street from the search results.",
+            "data": {
+              "street": "Select your street:"
+            }
+          },
+          "house_query": {
+            "title": "Yasno Outages: House Search",
+            "description": "Saved address: {current_address}. Enter a house number or part of it to find your address.",
+            "data": {
+              "house_query": "Enter your house number:"
+            }
+          },
+          "house": {
+            "title": "Yasno Outages: House Selection",
+            "description": "Pick the exact house number for your street.",
+            "data": {
+              "house": "Select your house:"
+            }
+          }
+        },
+        "error": {
+          "cannot_connect": "Failed to connect to Yasno API.",
+          "street_query_required": "Street search query is required.",
+          "house_query_required": "House search query is required.",
+          "no_streets": "No streets found for this query.",
+          "no_houses": "No houses found for this street.",
+          "no_group": "Failed to resolve group for this address."
+        }
+      }
     }
   }
 }

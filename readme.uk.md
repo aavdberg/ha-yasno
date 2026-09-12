@@ -1,8 +1,8 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-![HA Yasno Outages Logo](./icons/logo.png)
+![HA Yasno Outages Logo](./custom_components/ha_yasno/brand/logo.png)
 
-# ⚡️ HA Yasno Outages
+# ⚡️ Yasno Outages for Home Assistant
 
 [![GitHub Release][gh-release-image]][gh-release-url]
 [![GitHub Downloads][gh-downloads-image]][gh-downloads-url]
@@ -11,12 +11,14 @@
 [![Buy Me A Coffee][buymeacoffee-image]][buymeacoffee-url]
 [![Twitter][twitter-image]][twitter-url]
 
-Ця інтеграція надає інформацію про графіки відключень електроенергії від [Yasno][yasno]: календар запланованих відключень, датчики часу для наступних запланованих відключень тощо.
+[English](./readme.md) | [**Українською**](./readme.uk.md)
 
 > [!NOTE]
 > Інтеграція для графіків відключень електроенергії від [Yasno][yasno].
 >
-> Цей проєкт не має жодного відношення до [Yasno][yasno]. Ця інтеграція розроблена ентузіастом. Інформація може відрізнятися від інфомації на офіційному сайті.
+> Цей проєкт не має жодного відношення до [Yasno][yasno]. Ця інтеграція розроблена ентузіастом. Інформація може відрізнятися від інформації на офіційному сайті.
+
+Ця інтеграція для [Home Assistant][home-assistant] надає інформацію про графіки відключень електроенергії від [Yasno][yasno]: календар запланованих відключень, датчики часу для наступних запланованих відключень тощо.
 
 ## Спонсорство
 
@@ -24,7 +26,6 @@
 
 - 💖 [Спонсорувати на GitHub][gh-sponsors-url]
 - ☕️ [Buy Me A Coffee][buymeacoffee-url]
-- 🤝 [Підтримати на Patreon][patreon-url]
 - Bitcoin: `bc1q7lfx6de8jrqt8mcds974l6nrsguhd6u30c6sg8`
 - Ethereum: `0x6aF39C917359897ae6969Ad682C14110afe1a0a1`
 
@@ -32,9 +33,10 @@
 
 Найшвидший спосіб встановити цю інтеграцію — через [HACS][hacs-url], натиснувши кнопку нижче:
 
-[![Add to HACS via My Home Assistant][hacs-install-image]][hasc-install-url]
+[![Додати до HACS через My Home Assistant][hacs-install-image]][hacs-install-url]
 
-Якщо це не працює, додайте цей репозиторій в HACS вручну, додавши цей URL:
+<details>
+  <summary>Якщо кнопка не працює, додайте репозиторій вручну</summary>
 
 1. Відвідайте **HACS** → **Інтеграції** → **...** (вгорі праворуч) → **Користувацькі репозиторії**
 2. Натисніть **Додати**
@@ -42,39 +44,44 @@
 4. Виберіть **Інтеграція** як **Категорію**
 5. **Yasno Outages** з'явиться у списку доступних інтеграцій. Встановіть її звичайним способом.
 
+</details>
+
 ## Використання
 
-Ця інтеграція налаштовується через інтерфейс користувача. На сторінці **Пристрої та сервіси** натисніть **Додати інтеграцію** і знайдіть **Yasno Відключення**.
+Ця інтеграція налаштовується через інтерфейс користувача. Натисніть кнопку нижче, щоб додати її:
 
-Виберіть регіон:
+[![Додати Yasno Відключення][install-image]][install-url]
 
-![Region Selection](/media/1_region.png)
+<details>
+  <summary>Якщо кнопка не працює, додайте інтеграцію вручну</summary>
 
-Виберіть систему розподілу:
+1. На сторінці **Пристрої та сервіси** натисніть **Додати інтеграцію**.
+2. Знайдіть **Yasno Відключення**.
+3. Пройдіть кроки налаштування інтеграції.
 
-![Service Provider Selection](/media/2_provider.png)
+</details>
 
-Виберіть групу:
+Приклад процесу налаштування за адресою:
 
-![Group Selection](/media/3_group.png)
+<https://github.com/user-attachments/assets/887300f1-2abf-4a08-a476-e9200ae6f8e7>
 
-Ось як виглядає пристрій:
+Після налаштування ви побачите свої налаштовані записи та відповідні сутності:
 
-![Devices page](/media/4_devices.png)
+![Devices page](/media/devices.png)
 
-![Device page](/media/5_device.png)
+![Device page](/media/device.png)
 
-Після цього ви можете додати інтеграцію до своєї панелі керування та переглянути інформацію про наступні заплановані відключення.
-Інтеграція також надає календарний вигляд запланованих відключень. Ви можете додати його до своєї панелі керування за допомогою [Calendar Card][calendar-card].
+Далі можна додати інтеграцію на панель керування та переглядати інформацію про наступні заплановані відключення.
+Інтеграція також надає календарний вигляд запланованих відключень. Ви можете додати його до панелі керування за допомогою [Calendar card][calendar-card].
 
-![Перегляд календарів](/media/6_calendars.png)
+![Calendars view](/media/calendars.png)
 
 Приклади:
 
 - [Автоматизація](/examples/automation.yaml)
 - [Панель керування](/examples/dashboard.yaml)
 
-Приклад панелі керування з корисною інтеграцією:
+Приклад панелі керування з цією інтеграцією:
 
 ![Приклад панелі керування](https://github.com/denysdovhan/ha-yasno-outages/assets/3459374/26c75595-8984-4a9f-893a-e4b6d838b7f2)
 
@@ -83,6 +90,13 @@
 Бажаєте зробити внесок у проект?
 
 По-перше, дякую! Перегляньте [керівництво по внеску](./contributing.md) для отримання додаткової інформації.
+
+## Інші інтеграції
+
+- 💥 [Aerial Danger](https://github.com/denysdovhan/ha-aerial-danger) — виявляє повідомлення про повітряні загрози для вибраних регіонів і місцевостей України.
+- ☁️ [Check Weather](https://github.com/denysdovhan/ha-check-weather) — створює бінарний сенсор на основі прогнозу погоди на кілька наступних годин.
+- 💨 [ЛУН Місто Air](https://github.com/denysdovhan/ha-lun-misto-air) — надає дані про якість повітря та довкілля зі станцій моніторингу ЛУН Місто.
+- 🌦️ [Український гідрометеорологічний центр](https://github.com/denysdovhan/ha-ukr-hmc) — надає погодні, радіаційні й гідрологічні дані з meteo.gov.ua.
 
 ## Ліцензія
 
@@ -95,20 +109,22 @@ MIT © [Денис Довгань][denysdovhan]
 [gh-downloads-url]: https://github.com/denysdovhan/ha-yasno-outages/releases
 [gh-downloads-image]: https://img.shields.io/github/downloads/denysdovhan/ha-yasno-outages/total?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
-[hacs-image]: https://img.shields.io/badge/hacs-custom-orange.svg?style=flat-square
+[hacs-image]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
 [gh-sponsors-url]: https://github.com/sponsors/denysdovhan
 [gh-sponsors-image]: https://img.shields.io/github/sponsors/denysdovhan?style=flat-square
 [buymeacoffee-url]: https://buymeacoffee.com/denysdovhan
 [buymeacoffee-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
-[twitter-url]: https://twitter.com/denysdovhan
-[twitter-image]: https://img.shields.io/badge/twitter-%40denysdovhan-00ACEE.svg?style=flat-square
+[twitter-url]: https://x.com/denysdovhan
+[twitter-image]: https://img.shields.io/badge/follow-%40denysdovhan-000000.svg?style=flat-square
 
 <!-- References -->
 
 [yasno]: https://yasno.com.ua/
 [home-assistant]: https://www.home-assistant.io/
 [denysdovhan]: https://github.com/denysdovhan
-[hasc-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
+[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
 [hacs-install-image]: https://my.home-assistant.io/badges/hacs_repository.svg
 [add-translation]: https://github.com/denysdovhan/ha-yasno-outages/blob/master/contributing.md#how-to-add-translation
 [calendar-card]: https://www.home-assistant.io/dashboards/calendar/
+[install-image]: https://my.home-assistant.io/badges/config_flow_start.svg
+[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=ha_yasno

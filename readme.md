@@ -1,8 +1,8 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-![HA Yasno Outages Logo](./icons/logo.png)
+![HA Yasno Outages Logo](./custom_components/ha_yasno/brand/logo.png)
 
-# ⚡️ HA Yasno Outages
+# ⚡️ Yasno Outages for Home Assistant
 
 [![GitHub Release][gh-release-image]][gh-release-url]
 [![GitHub Downloads][gh-downloads-image]][gh-downloads-url]
@@ -11,15 +11,14 @@
 [![Buy Me A Coffee][buymeacoffee-image]][buymeacoffee-url]
 [![Twitter][twitter-image]][twitter-url]
 
+[**English**](./readme.md) | [Українською](./readme.uk.md)
+
 > [!NOTE]
 > An integration for electricity outages plans by [Yasno][yasno].
 >
 > This is not affiliated with [Yasno][yasno] in any way. This integration is developed by an individual. Information may vary from their official website.
 
 This integration for [Home Assistant][home-assistant] provides information about electricity outages plans by [Yasno][yasno]: calendar of planned outages, time sensors for the next planned outages, and more.
-
-> [!TIP]
-> Документація доступна [**українською мовою 🇺🇦**](./readme.uk.md)
 
 ## Sponsorship
 
@@ -34,9 +33,10 @@ Your generosity will help me maintain and develop more projects like this one.
 
 The quickest way to install this integration is via [HACS][hacs-url] by clicking the button below:
 
-[![Add to HACS via My Home Assistant][hacs-install-image]][hasc-install-url]
+[![Add to HACS via My Home Assistant][hacs-install-image]][hacs-install-url]
 
-If it doesn't work, adding this repository to HACS manually by adding this URL:
+<details>
+  <summary>If the button doesn't work, add the repository manually</summary>
 
 1. Visit **HACS** → **Integrations** → **...** (in the top right) → **Custom repositories**
 2. Click **Add**
@@ -44,32 +44,37 @@ If it doesn't work, adding this repository to HACS manually by adding this URL:
 4. Chose **Integration** as a **Category**
 5. **Yasno Outages** will appear in the list of available integrations. Install it normally.
 
+</details>
+
 ## Usage
 
-This integration is configurable via UI. On **Devices and Services** page, click **Add Integration** and search for **Yasno Outages**.
+This integration is configurable via UI. Click a button below to add:
 
-Select your region:
+[![Add Yasno Outages][install-image]][install-url]
 
-![Region Selection](/media/1_region.png)
+<details>
+  <summary>If the button doesn't work, add the integration manually</summary>
 
-Select your Service Provider
+1. On **Devices and Services** page, click **Add Integration**
+2. Search for **Yasno Outages**.
+3. Go through the steps to configure the integration.
 
-![Service Provider Selection](/media/2_provider.png)
+</details>
 
-Select your Group
+Here is an example of setup process with an address:
 
-![Group Selection](/media/3_group.png)
+<https://github.com/user-attachments/assets/887300f1-2abf-4a08-a476-e9200ae6f8e7>
 
-Here's how the devices look
+After setup you can see the your configured entries and corresponding entities:
 
-![Devices page](/media/4_devices.png)
+![Devices page](/media/devices.png)
 
-![Device page](/media/5_device.png)
+![Device page](/media/device.png)
 
 Then you can add the integration to your dashboard and see the information about the next planned outages.
 Integration also provides a calendar view of planned outages. You can add it to your dashboard as well via [Calendar card][calendar-card].
 
-![Calendars view](/media/6_calendars.png)
+![Calendars view](/media/calendars.png)
 
 Examples:
 
@@ -84,7 +89,14 @@ Here's an example of a dashboard using this integration:
 
 Want to contribute to the project?
 
-First, thanks! Check [contributing guideline](/contributing.md) for more information.
+First, thanks! Check [contributing guideline](./contributing.md) for more information.
+
+## Other integrations
+
+- 💥 [Aerial Danger](https://github.com/denysdovhan/ha-aerial-danger) — detects aerial-threat messages for selected Ukrainian regions and localities.
+- ☁️ [Check Weather](https://github.com/denysdovhan/ha-check-weather) — creates a binary sensor based on forecast conditions for the next few hours.
+- 💨 [LUN Misto Air](https://github.com/denysdovhan/ha-lun-misto-air) — provides air quality and environmental data from LUN Misto monitoring stations.
+- 🌦️ [Ukrainian Hydrometeorological Center](https://github.com/denysdovhan/ha-ukr-hmc) — provides weather, radiation, and hydrology data from meteo.gov.ua.
 
 ## License
 
@@ -102,15 +114,17 @@ MIT © [Denys Dovhan][denysdovhan]
 [gh-sponsors-image]: https://img.shields.io/github/sponsors/denysdovhan?style=flat-square
 [buymeacoffee-url]: https://buymeacoffee.com/denysdovhan
 [buymeacoffee-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
-[twitter-url]: https://twitter.com/denysdovhan
-[twitter-image]: https://img.shields.io/badge/twitter-%40denysdovhan-00ACEE.svg?style=flat-square
+[twitter-url]: https://x.com/denysdovhan
+[twitter-image]: https://img.shields.io/badge/follow-%40denysdovhan-000000.svg?style=flat-square
 
 <!-- References -->
 
 [yasno]: https://yasno.com.ua/
 [home-assistant]: https://www.home-assistant.io/
 [denysdovhan]: https://github.com/denysdovhan
-[hasc-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
+[hacs-install-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=denysdovhan&repository=ha-yasno-outages&category=integration
 [hacs-install-image]: https://my.home-assistant.io/badges/hacs_repository.svg
 [add-translation]: https://github.com/denysdovhan/ha-yasno-outages/blob/master/contributing.md#how-to-add-translation
 [calendar-card]: https://www.home-assistant.io/dashboards/calendar/
+[install-image]: https://my.home-assistant.io/badges/config_flow_start.svg
+[install-url]: https://my.home-assistant.io/redirect/config_flow_start/?domain=ha_yasno

@@ -1,6 +1,20 @@
 """Yasno Outages API package."""
 
-from .models import OutageEvent, OutageEventType, OutageSlot
+from .account import AccountApi
+from .auth import YasnoAuthApi, YasnoAuthBlockedError, YasnoAuthError
+from .models import (
+    AuthTokens,
+    OutageEvent,
+    OutageEventType,
+    OutageSlot,
+    YasnoAccount,
+    YasnoAccountDebt,
+    YasnoApiError,
+    YasnoAuthAddress,
+    YasnoContract,
+    YasnoMeterReading,
+    YasnoNotFoundError,
+)
 from .planned import PlannedOutagesApi
 from .probable import ProbableOutagesApi
 
@@ -65,12 +79,63 @@ class YasnoApi:
         """Get provider data by name."""
         return self._planned.get_provider_by_name(region_name, provider_name)
 
+    async def fetch_streets(
+        self,
+        region_id: int | None,
+        provider_id: int | None,
+        query: str,
+    ) -> list[dict]:
+        """Fetch streets by query."""
+        return await self._planned.fetch_streets(region_id, provider_id, query)
+
+    async def fetch_houses(
+        self,
+        region_id: int | None,
+        provider_id: int | None,
+        street_id: int | None,
+        query: str,
+    ) -> list[dict]:
+        """Fetch houses by street and query."""
+        return await self._planned.fetch_houses(
+            region_id,
+            provider_id,
+            street_id,
+            query,
+        )
+
+    async def fetch_group_by_address(
+        self,
+        region_id: int | None,
+        provider_id: int | None,
+        street_id: int | None,
+        house_id: int | None,
+    ) -> str | None:
+        """Fetch group by address ids."""
+        return await self._planned.fetch_group_by_address(
+            region_id,
+            provider_id,
+            street_id,
+            house_id,
+        )
+
 
 __all__ = [
+    "AccountApi",
+    "AuthTokens",
     "OutageEvent",
     "OutageEventType",
     "OutageSlot",
     "PlannedOutagesApi",
     "ProbableOutagesApi",
+    "YasnoAccount",
+    "YasnoAccountDebt",
     "YasnoApi",
+    "YasnoApiError",
+    "YasnoAuthAddress",
+    "YasnoAuthApi",
+    "YasnoAuthBlockedError",
+    "YasnoAuthError",
+    "YasnoContract",
+    "YasnoMeterReading",
+    "YasnoNotFoundError",
 ]
